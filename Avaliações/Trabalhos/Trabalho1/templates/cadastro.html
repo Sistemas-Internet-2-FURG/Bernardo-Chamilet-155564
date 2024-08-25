@@ -32,20 +32,20 @@
 				{% endif %}
 				<form action="/cadastro" method='POST'>
 					<div class="label-float">
-						<input type='text' id='usuario' name='usuario' required>
+						<input type='text' id='usuario' name='usuario' value="{{ dadosForm.get('usuario', '') }}" required>
 						<label for='usuario'>Digite seu nome de usuário</label>
 					</div>
 					<div class="label-float">
-						<input type='text' id='nome' name='nome' required>
+						<input type='text' id='nome' name='nome' value="{{ dadosForm.get('nome', '') }}" required>
 						<label for='nome'>Digite seu nome</label>
 					</div>
 					<div class="label-float">
-						<input type='password' id='senha' name='senha' required>
+						<input type='password' id='senha' name='senha' value="{{ dadosForm.get('senha', '') }}" required>
 						<label for='senha'>Digite sua senha</label>
 					</div>
 					<div id="erro" class="erro"></div>
 					<div class="label-float">
-						<input type='password' id='confirma' name='confirma' required onkeyup="confirmarSenha()" onchange="confirmarSenha()">
+						<input type='password' id='confirma' name='confirma' value="{{ dadosForm.get('confirma', '') }}" required onkeyup="confirmarSenha()" onchange="confirmarSenha()">
 						<label for='confirma'>Confirmar senha </label>
 					</div>
 					<button type='submit'>Cadastrar</button>
