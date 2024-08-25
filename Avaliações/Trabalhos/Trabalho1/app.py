@@ -60,7 +60,7 @@ def cadastrar():
 		#Verificando se senha e confirma senha coincidem
 		if confirma != senha:
 			msgErro = "Senhas não coincidem"
-			return render_template("cadastro.html", msgErro=msgErro)
+			return render_template("cadastro.html", msgErro=msgErro, dadosForm=request.form)
 		conexao = sqlite3.connect("medidas.db")
 		cursor = conexao.cursor()
 		#Verificando se usuário existe
@@ -70,7 +70,7 @@ def cadastrar():
 		if usuarioExiste != None:
 			msgErro = "Usuário já existe"
 			conexao.close()
-			return render_template("cadastro.html", msgErro=msgErro)
+			return render_template("cadastro.html", msgErro=msgErro, dadosForm=request.form)
 		#Usuário não existe
 		#Criando usuário
 		cursor.execute("INSERT INTO USUARIOS (usuario,nome,senha) VALUES (?,?,?)", (usuario, nome, senha))
@@ -79,7 +79,7 @@ def cadastrar():
 		return render_template("login.html",sucesso=True)
 	#Carregando página
 	else:
-		return render_template("cadastro.html")
+		return render_template("cadastro.html", dadosForm={})
 
 #Início
 @app.route("/inicio", methods=['GET'])
