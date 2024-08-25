@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Estilo.css') }}">
+		<title>Inicio</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="cardo2">
+				<form action="/inicio/sair" method='GET'>
+					<button type='submit' id="botaosair"><i class="fa-solid fa-person-through-window" style="font-size: 1.25em;"></i></button>
+				</form>
+				<h1>Olá {{ nome }}</h1>
+				<br>
+				<h2>Suas medidas</h2>
+				<br>
+				<table border='true'>
+					<tr>
+						<td><i class="fa-solid fa-calendar-days" style="font-size: 1.5em;"></i></td>
+						<td><b>Peso (kg)</b></td>
+						<td><b>Ombro (cm)</b></td>
+						<td><b>Peito (cm)</b></td>
+						<td><b>Braço (cm)</b></td>
+						<td><b>Antebraço (cm)</b></td>
+						<td><b>Cintura (cm)</b></td>
+						<td><b>Quadril (cm)</b></td>
+						<td><b>Coxa (cm)</b></td>
+						<td><b>Panturrilha (cm)</b></td>
+						<td><b>Edição</b></td>
+						<td><b>Exclusão</b></td>
+					</tr>
+					{% for linha in medidas %}
+					<tr>
+						<td>{{ linha[1] }}</td>
+						<td>{{ linha[2] }}</td>
+						<td>{{ linha[3] }}</td>
+						<td>{{ linha[4] }}</td>
+						<td>{{ linha[5] }}</td>
+						<td>{{ linha[6] }}</td>
+						<td>{{ linha[7] }}</td>
+						<td>{{ linha[8] }}</td>
+						<td>{{ linha[9] }}</td>
+						<td>{{ linha[10] }}</td>
+						<td>
+							<form action="/inicio/editar/{{ linha[0] }}" method='GET'>
+								<button type='submit'><i class="fa-solid fa-pencil" style="font-size: 1.25em;"></i></button>
+							</form>
+						</td>
+						<td>
+							<form action="/inicio/{{ linha[0] }}" method='POST' onsubmit="temCerteza(event);">
+								<button type='submit' style="background-color:red"><i class="fa-solid fa-trash-can" style="font-size: 1.25em;"></i></button>
+							</form>
+						</td>		
+					</tr>
+					{% endfor %}
+				</table>
+				<br>
+				<a href="/inicio/adicionar" style="position:absolute;left:5%;"><i class="fa-solid fa-square-plus" style="font-size: 1.75em;"></i></a>
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+		<script src="https://kit.fontawesome.com/a6a9eea9c7.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script>
+			function temCerteza(event){
+				event.preventDefault();
+				const form = event.target;
+				return Swal.fire({
+					title: "Tem certeza?",
+					text: "Essa ação é irreversível!",
+					icon: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#3085d6",
+					cancelButtonColor: "#d33",
+					confirmButtonText: "Apagar!"
+					}).then((result) => {
+					if (result.isConfirmed) {
+						Swal.fire({
+						title: "Apagadas!",
+						text: "Medidas apagasas.",
+						icon: "success"
+						}).then(() => {
+							form.submit();
+						});
+					}
+					});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Estilo.css') }}">
+		<title>Login</title>
+	</head>
+	<body>
+		<br>
+		<br>
+		<br>
+		<div class="container">
+			<div class="cardo">
+				<br>
+				<h1>Login</h1>
+				<br>
+				{% if msgErro %}
+					<div id='msgError'>{{ msgErro }}</div>
+				{% endif %}
+				<form action="/login" method='POST'>
+					<div class="label-float">
+						<input type='text' id='usuario' name='usuario' required>
+						<label for='usuario'>Digite seu nome de usuário</label>
+					</div>
+					<div class="label-float">
+						<input type='password' id='senha' name='senha' required>
+						<label for='senha'>Digite sua senha</label>
+					</div>
+					<button type='submit'>Logar</button>
+				</form>
+				<hr>
+				<p> Não tem uma conta?
+				<br>
+				<a href="cadastro"> Cadastre-se </a>
+				</p>
+				<br>
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				{% if sucesso %}
+				Swal.fire({
+					title: "Sucesso!",
+					text: "Cadastro realizado com sucesso",
+					icon: "success"
+					}).then((result) => {
+						if (result.isConfirmed) {
+							window.location.href = "/login";
+						}
+					});
+				{% endif %}
+			});
+		</script>
+	</body>
+</html>
+

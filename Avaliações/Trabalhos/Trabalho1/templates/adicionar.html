@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Estilo.css') }}">
+    <title>Adicionar</title>
+</head>
+<body>
+    <div class="container">
+        <div class="cardo3">
+            <br>
+            <h1>Adicione novas medidas</h1>
+            <h1>(centímetros)</h1>
+            <form action="/inicio/adicionar" method='POST'>
+                <div class="label-float">
+                    <input type='text' id='peso' name='peso' required>
+                    <label for='peso'>Peso (kg)</label>
+                </div>
+                <div class="label-float">
+                    <input type='text' id='ombro' name='ombro' required>
+                    <label for='ombro'>Ombro (Parte mais larga)</label>
+                </div>
+                <div class="label-float">
+                    <input type='text' id='peito' name='peito' required>
+                    <label for='peito'>Peito (Altura dos mamilos)</label>
+                </div>
+                <div class="label-float">
+                    <input type='text' id='braco' name='braco' required>
+                    <label for='braco'>Braço (relaxado)</label>
+                </div>
+                <div class="label-float">
+                    <input type='text' id='antebraco' name='antebraco' required>
+                    <label for='antebraco'>Antebraço</label>
+                </div>
+                <div class="label-float">
+                    <input type='text' id='cintura' name='cintura' required>
+                    <label for='cintura'>Cintura (altura do umbigo)</label>
+                </div>
+                <div class="label-float">
+                    <input type='text' id='quadril' name='quadril' required>
+                    <label for='quadril'>Quadril (Parte mais larga)</label>
+                </div>
+                <div class="label-float">
+                    <input type='text' id='coxa' name='coxa' required>
+                    <label for='coxa'>Coxa (Parte mais larga)</label>
+                </div>
+                <div class="label-float">
+                    <input type='text' id='panturrilha' name='panturrilha' required>
+                    <label for='panturrilha'>Panturrilha (Parte mais larga)</label>
+                </div>
+                <br>
+                <button type='submit'>Registrar</button>
+            </form>
+            <br>
+            <a href="/inicio">Voltar</a>
+            <br>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if sucesso %}
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Medidas adcionadas com sucesso",
+                icon: "success"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/inicio";
+                    }
+                });
+            {% endif %}
+        });
+    </script>
+</body>
+</html>

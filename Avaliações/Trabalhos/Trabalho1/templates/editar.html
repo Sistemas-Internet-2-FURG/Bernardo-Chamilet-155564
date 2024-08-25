@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Estilo.css') }}">
+		<title>Editar</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="cardo3">
+				<br>
+				<h1>Editar</h1>
+				<br>
+				{% if editado %}
+				<form action="/inicio/editar/{{ editado[0] }}" method='POST'>
+					<div class="label-float">
+						<input type='text' id='peso' name='peso' value='{{ editado[1] }}' required>
+						<label for='peso'>Peso (kg)</label>
+					</div>
+					<div class="label-float">
+						<input type='text' id='ombro' name='ombro' value='{{ editado[2] }}' required>
+						<label for='ombro'>Ombro (cm) (Parte mais larga)</label>
+					</div>
+					<div class="label-float">
+						<input type='text' id='peito' name='peito' value='{{ editado[3] }}' required>
+						<label for='peito'>Peito (cm) (Altura dos mamilos)</label>
+					</div>
+					<div class="label-float">
+						<input type='text' id='braco' name='braco' value='{{ editado[4] }}' required>
+						<label for='braco'>Braço (cm) (relaxado)</label>
+					</div>
+					<div class="label-float">
+						<input type='text' id='antebraco' name='antebraco' value='{{ editado[5] }}' required>
+						<label for='antebraco'>Antebraço (cm)</label>
+					</div>
+					<div class="label-float">
+						<input type='text' id='cintura' name='cintura' value='{{ editado[6] }}' required>
+						<label for='cintura'>Cintura (cm) (altura do umbigo)</label>
+					</div>
+					<div class="label-float">
+						<input type='text' id='quadril' name='quadril' value='{{ editado[7] }}' required>
+						<label for='quadril'>Quadril (cm) (Parte mais larga)</label>
+					</div>
+					<div class="label-float">
+						<input type='text' id='coxa' name='coxa' value='{{ editado[8] }}' required>
+						<label for='coxa'>Coxa (cm) (Parte mais larga)</label>
+					</div>
+					<div class="label-float">
+						<input type='text' id='panturrilha' name='panturrilha' value='{{ editado[9] }}' required>
+						<label for='panturrilha'>Panturrilha (cm) (Parte mais larga)</label>
+					</div>
+					<button type='submit'>Salvar</button>
+				</form>
+				{% endif %}
+				<br>
+				<a href="/inicio">Voltar</a>
+				<br>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				{% if sucesso %}
+				Swal.fire({
+					title: "Sucesso!",
+					text: "Medidas editadas com sucesso",
+					icon: "success"
+					}).then((result) => {
+						if (result.isConfirmed) {
+							window.location.href = "/inicio";
+						}
+					});
+				{% endif %}
+			});
+		</script>
+	</body>
+</html>

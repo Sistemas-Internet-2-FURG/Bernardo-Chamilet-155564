@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Estilo.css') }}">
+		<title>Cadastro</title>
+		<script>
+			function confirmarSenha() {
+				var senha = document.getElementById('senha').value;
+				var confirma = document.getElementById('confirma').value;
+				var erro = document.getElementById('erro')
+				if (senha != confirma) {
+					erro.textContent = 'Senhas não coinscidem';
+				} else {
+					erro.textContent = '';
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<br>
+		<br>
+		<br>
+		<div class="container">
+			<div class="cardo">
+				<br>
+				<h1>Cadastro</h1>
+				<br>
+				{% if msgErro %}
+					<div id="msgError">{{msgErro}}</div>
+				{% endif %}
+				<form action="/cadastro" method='POST'>
+					<div class="label-float">
+						<input type='text' id='usuario' name='usuario' required>
+						<label for='usuario'>Digite seu nome de usuário</label>
+					</div>
+					<div class="label-float">
+						<input type='text' id='nome' name='nome' required>
+						<label for='nome'>Digite seu nome</label>
+					</div>
+					<div class="label-float">
+						<input type='password' id='senha' name='senha' required>
+						<label for='senha'>Digite sua senha</label>
+					</div>
+					<div id="erro" class="erro"></div>
+					<div class="label-float">
+						<input type='password' id='confirma' name='confirma' required onkeyup="confirmarSenha()" onchange="confirmarSenha()">
+						<label for='confirma'>Confirmar senha </label>
+					</div>
+					<button type='submit'>Cadastrar</button>
+				</form>
+				<hr>
+				<p> Já tem uma conta?
+					<br>
+					<a href="login"> Entrar </a>
+				</p>
+				<br>
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+	</body>
+</html>
+
