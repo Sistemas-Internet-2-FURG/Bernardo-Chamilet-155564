@@ -1,1 +1,1 @@
-App flask: [App_flask_medidas](https://github.com/BernardoChamilet/controle_medidas)
+App flask: [controle_medidas](https://github.com/BernardoChamilet/controle_medidas)
